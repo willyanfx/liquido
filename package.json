@@ -1,0 +1,25 @@
+{
+    "name": "liquid",
+    "displayName": "Liquido",
+    "description": "shopify liquid support",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.55.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "liquid",
+            "aliases": ["liquid", "liquid"],
+            "extensions": ["liquid"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "liquid",
+            "scopeName": "source.liquid",
+            "path": "./syntaxes/liquid.tmLanguage.json"
+        }]
+    }
+}
