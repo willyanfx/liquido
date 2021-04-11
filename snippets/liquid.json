@@ -1,0 +1,75 @@
+{
+    "Tag if": {
+        "prefix": "if",
+        "desciption": "Flow tag: if",
+        "body": ["{% if ${1:condition} %}", "\t$2", "{% endif %}"]
+    },
+    "Tag if else": {
+        "prefix": "ifelse",
+        "description": "Flow tag: if else",
+        "body": [
+            "{% if ${1:condition} %}",
+            "\t$2",
+            "{% else %}",
+            "\t$3",
+            "{% endif %}"
+        ]
+    },
+    "Tag elsif": {
+        "prefix": "elsif",
+        "description": "Flow tag: elsif",
+        "body": [
+            "{% if ${1:condition} %}",
+            "\t$2",
+            "{% elsif ${3:condition} %}",
+            "\t$4",
+            "{% endif %}"
+        ]
+    },
+    "Tag unless": {
+        "prefix": "unless",
+        "description": "Flow tag: unless",
+        "body": ["{% unless ${1:condition} %}", "\t$2", "{% endunless %}"]
+    },
+    "Tag case": {
+        "prefix": "case",
+        "description": "Flow tag: case",
+        "body": [
+            "{% case ${1:variable} %}",
+            "\t{% when ${2:condition} %}",
+            "\t\t$3",
+            "\t{% else %}",
+            "\t\t$4",
+            "{% endcase %}"
+        ]
+    },
+    "Tag for": {
+        "prefix": "for",
+        "description": "Iteration tag: for",
+        "body": [
+            "{% for ${1:item} in ${2:collection} %}",
+            "\t$3",
+            "{% endfor %}"
+        ]
+    },
+    "Tag include": {
+        "prefix": "include",
+        "description": "Theme tag: include",
+        "body": ["{% include '${1:snippet}' %}"]
+    },
+    "Tag render": {
+        "prefix": "render",
+        "description": "Theme tag: render",
+        "body": ["{% render '${1:snippet}' %}"]
+    },
+    "Tag render with parameters": {
+        "prefix": "renderwith",
+        "description": "Theme tag: render with parameters",
+        "body": ["{% render '${1:snippet}', ${2:variable}: ${3:value} %}"]
+    },
+    "Tag section": {
+        "prefix": "section",
+        "description": "Theme tag: section",
+        "body": ["{% section '${1:snippet}' %}"]
+    }
+}

@@ -10,16 +10,31 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "liquid",
-            "aliases": ["liquid", "liquid"],
-            "extensions": ["liquid"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "liquid",
-            "scopeName": "source.liquid",
-            "path": "./syntaxes/liquid.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "liquid",
+                "aliases": [
+                    "liquid",
+                    "liquid"
+                ],
+                "extensions": [
+                    "liquid"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "liquid",
+                "scopeName": "source.liquid",
+                "path": "./syntaxes/liquid.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "liquid",
+                "path": "./snippets/liquid.json"
+            }
+        ]
     }
 }
