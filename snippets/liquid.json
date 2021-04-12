@@ -407,5 +407,27 @@
             "\t\"content\": \"$1\"",
             "},$2"
         ]
+    },
+    "Responsive Image Tag": {
+        "prefix": "img:liquid",
+        "body": [
+            "<img",
+            "\tclass=\"${1:lazyload}\"",
+            "\tsrc=\"\"",
+            "\tdata-src=\"{{ ${2:img_url} }}\"",
+            "\tdata-aspectratio=\"{{ ${1:section.settings.image}.aspect_ratio }}\"",
+            "\tdata-widths=\"[${1:720, 900, 1080}]\"",
+            "\tdata-sizes=\"auto\"",
+            "\talt=\"{{ ${1:section.settings.image}.alt | escape }}\"",
+            ">"
+        ],
+        "description": "Responsive Image Tag"
+    },
+    "Assign Image URL": {
+        "prefix": "img_url",
+        "body": [
+            "{%- assign img_url = ${1:section.settings.image} | img_url: \"${2:1x1}\" | replace: \"_${2:1x1}.\", \"_{width}x.\" -%}"
+        ],
+        "description": "Assign Image URL"
     }
 }
