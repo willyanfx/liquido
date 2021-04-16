@@ -412,13 +412,17 @@
         "prefix": "img:liquid",
         "body": [
             "<img",
+            "\ttabindex=\"-1\"",
             "\tclass=\"${1:lazyload}\"",
             "\tsrc=\"\"",
             "\tdata-src=\"{{ ${2:img_url} }}\"",
-            "\tdata-aspectratio=\"{{ ${1:section.settings.image}.aspect_ratio }}\"",
-            "\tdata-widths=\"[${1:720, 900, 1080}]\"",
+            "\tdata-aspectratio=\"{{ ${3:section.settings.image}.aspect_ratio }}\"",
+            "\tdata-widths=\"[${4:720, 900, 1080}]\"",
             "\tdata-sizes=\"auto\"",
-            "\talt=\"{{ ${1:section.settings.image}.alt | escape }}\"",
+            "\tdata-parent-fit=\"cover\"",
+            "\talt=\"{{ ${5:section.settings.image}.alt | escape }}\"",
+            "\twidth=\"{{ ${6:block.settings.image_url}.width }}\"",
+            "\theight=\"{{ ${7:block.settings.image_url}.height }}\"",
             ">"
         ],
         "description": "Responsive Image Tag"
@@ -429,5 +433,20 @@
             "{%- assign img_url = ${1:section.settings.image} | img_url: \"${2:1x1}\" | replace: \"_${2:1x1}.\", \"_{width}x.\" -%}"
         ],
         "description": "Assign Image URL"
+    },
+    "anchor link": {
+        "prefix": "a:liquid",
+        "body": [
+            "<a",
+            "\tclass=\"${1}\"",
+            "\thref=\"{{ ${2: link} }}\"",
+            "\taria-label=\"{{ ${3:label} | escape }}\"",
+            "\trole='link'",
+            "\ttabindex='0'",
+            ">",
+            "\t${4} ",
+            "</a>"
+        ],
+        "description": "anchor link"
     }
 }
