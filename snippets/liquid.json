@@ -428,7 +428,7 @@
         "description": "Responsive Image Tag"
     },
     "Assign Image URL": {
-        "prefix": "img_url",
+        "prefix": "assign:img_url",
         "body": [
             "{%- assign img_url = ${1:section.settings.image} | img_url: \"${2:1x1}\" | replace: \"_${2:1x1}.\", \"_{width}x.\" -%}"
         ],

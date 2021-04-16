@@ -27,7 +27,10 @@
             {
                 "language": "liquid",
                 "scopeName": "source.liquid",
-                "path": "./syntaxes/liquid.tmLanguage.json"
+                "path": "./syntaxes/liquid.tmLanguage.json",
+                "embeddedLanguages": {
+                    "meta.embedded.block.json": "json"
+                }
             }
         ],
         "snippets": [
