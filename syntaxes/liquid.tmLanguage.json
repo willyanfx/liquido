@@ -35,9 +35,6 @@
             "include": "#stylesheet"
         },
         {
-            "include": "#stylesheet-scss"
-        },
-        {
             "include": "#tags"
         },
         {
