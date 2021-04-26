@@ -42,25 +42,6 @@
         }
     ],
     "repository": {
-        "liquid-tag": {
-            "name": "punctuation.tag.liquid",
-            "begin": "({%)(-)?(liquid)",
-            "end": "(-)?(%})",
-            "patterns": [
-                {
-                    "include": "#constant-characters"
-                },
-                {
-                    "include": "#constant-boolean"
-                },
-                {
-                    "include": "#constant-numeric"
-                },
-                {
-                    "include": "#constant-boolean"
-                }
-            ]
-        },
         "tags": {
             "name": "punctuation.tag.liquid",
             "begin": "({%)(-)?",
