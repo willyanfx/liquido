@@ -83,16 +83,19 @@
             },
             "patterns": [
                 {
-                    "include": "#constant-characters"
+                    "include": "#const-characters"
                 },
                 {
-                    "include": "#constant-boolean"
+                    "include": "#render-tag"
                 },
                 {
-                    "include": "#constant-numeric"
+                    "include": "#const-boolean"
                 },
                 {
-                    "include": "#constant-boolean"
+                    "include": "#const-numeric"
+                },
+                {
+                    "include": "#const-boolean"
                 },
                 {
                     "include": "#entity-name-tag"
@@ -100,9 +103,7 @@
                 {
                     "include": "#entity-other-attribute-name"
                 },
-                {
-                    "include": "#render-tag"
-                },
+
                 {
                     "include": "#invalid-ampersand"
                 },
@@ -172,7 +173,7 @@
             },
             "patterns": [
                 {
-                    "include": "#constant-characters"
+                    "include": "#const-characters"
                 },
                 {
                     "include": "#object-properties"
@@ -214,7 +215,7 @@
             "begin": "{%-?\\s*comment\\s*-?%}",
             "end": "{%-?\\s*endcomment\\s*-?%}"
         },
-        "constant-characters": {
+        "const-characters": {
             "name": "constant.character.entity.liquid",
             "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
             "captures": {
@@ -226,11 +227,11 @@
                 }
             }
         },
-        "constant-boolean": {
+        "const-boolean": {
             "name": "constant.language.liquid",
             "match": "(false|true|nil|null|empty|blank)"
         },
-        "constant-numeric": {
+        "const-numeric": {
             "name": "constant.numeric.liquid",
             "match": "(-|\\+)?\\s*[0-9]+(\\.[0-9]+)?"
         },
@@ -243,8 +244,20 @@
             }
         },
         "render-tag": {
-            "name": "string.quoted.liquid",
-            "match": "((?<=render)|(?<=render_relative))\\s[^{,'\"]+?\\s+"
+            "patterns": [
+                {
+                    "name": "string.quoted.liquid",
+                    "match": "((?<=render)|(?<=render_relative))\\s[^{,'\"]+?\\s+"
+                },
+                {
+                    "name": "entity.name.function.member",
+                    "match": "(?<=,)\\s\\w+"
+                },
+                {
+                    "name": "variable.parameter",
+                    "match": "(?<=:)\\s\\w+"
+                }
+            ]
         },
         "invalid-ampersand": {
             "match": "&",
@@ -289,7 +302,6 @@
             "match": "/=",
             "name": "keyword.operator.assignment.augmented.liquid"
         },
-
         "object-properties": {
             "match": "(?<=\\w.)(?<=\\w.)\\b\\w+?\\b\\s+?",
             "name": "variable.parameter.liquid"
