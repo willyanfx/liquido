@@ -1,7 +1,8 @@
 {
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name": "Liquid",
-    "injectionSelector": "L:text.html -meta.embedded -comment, L:source.css -comment -string -meta.embedded, L:source.js -string.quoted.*.js -comment -string, L:source.jsx -comment -string -string.quoted.*.jsx, L:source.js.jsx -comment -string, L:source.ts -string -comment -string.quoted.*.ts, L:source.json -string.quoted.*.json, text.html.markdown -comment",
+    "injectionSelector": "L:source.js -comment -string, L:source.js -comment -string, L:source.jsx -comment -string,  L:source.js.jsx -comment -string, L:source.ts -comment -string, L:source.tsx -comment -string",
+
     "fileTypes": [
         "html",
         "liquid",
@@ -19,6 +20,9 @@
     "foldingStartMarker": "(?x){%-?\\s*(if|unless|for|paginate|capture|form|case|tablerow|raw|comment|block|paginate|schema|stylesheet|javascript)[^(%})]+-?%}",
     "foldingStopMarker": "(?x){%-?\\s*(endif|endunless|endfor|endpaginate|endcapture|endform|endcase|endtablerow|endraw|endcomment|endblock|endpaginate|endschema|endstylesheet|endjavascript)[^(%})]+-?%}",
     "patterns": [
+        {
+            "include": "text.html.basic"
+        },
         {
             "include": "#comments"
         },
@@ -42,25 +46,6 @@
         }
     ],
     "repository": {
-        "liquid-tag": {
-            "name": "punctuation.tag.liquid",
-            "begin": "({%)(-)?(liquid)",
-            "end": "(-)?(%})",
-            "patterns": [
-                {
-                    "include": "#constant-characters"
-                },
-                {
-                    "include": "#constant-boolean"
-                },
-                {
-                    "include": "#constant-numeric"
-                },
-                {
-                    "include": "#constant-boolean"
-                }
-            ]
-        },
         "tags": {
             "name": "punctuation.tag.liquid",
             "begin": "({%)(-)?",
@@ -83,16 +68,19 @@
             },
             "patterns": [
                 {
-                    "include": "#constant-characters"
+                    "include": "#const-characters"
                 },
                 {
-                    "include": "#constant-boolean"
+                    "include": "#render-tag"
                 },
                 {
-                    "include": "#constant-numeric"
+                    "include": "#const-boolean"
                 },
                 {
-                    "include": "#constant-boolean"
+                    "include": "#const-numeric"
+                },
+                {
+                    "include": "#const-boolean"
                 },
                 {
                     "include": "#entity-name-tag"
@@ -100,9 +88,7 @@
                 {
                     "include": "#entity-other-attribute-name"
                 },
-                {
-                    "include": "#render-tag"
-                },
+
                 {
                     "include": "#invalid-ampersand"
                 },
@@ -147,6 +133,9 @@
                 },
                 {
                     "include": "#variable-other"
+                },
+                {
+                    "include": "#assign-tag"
                 }
             ]
         },
@@ -172,7 +161,7 @@
             },
             "patterns": [
                 {
-                    "include": "#constant-characters"
+                    "include": "#const-characters"
                 },
                 {
                     "include": "#object-properties"
@@ -209,12 +198,13 @@
                 }
             ]
         },
+
         "comments": {
             "name": "comment.block.liquid",
             "begin": "{%-?\\s*comment\\s*-?%}",
             "end": "{%-?\\s*endcomment\\s*-?%}"
         },
-        "constant-characters": {
+        "const-characters": {
             "name": "constant.character.entity.liquid",
             "match": "(&)([a-zA-Z0-9]+|#[0-9]+|#x[0-9a-fA-F]+)(;)",
             "captures": {
@@ -226,11 +216,11 @@
                 }
             }
         },
-        "constant-boolean": {
+        "const-boolean": {
             "name": "constant.language.liquid",
             "match": "(false|true|nil|null|empty|blank)"
         },
-        "constant-numeric": {
+        "const-numeric": {
             "name": "constant.numeric.liquid",
             "match": "(-|\\+)?\\s*[0-9]+(\\.[0-9]+)?"
         },
@@ -243,8 +233,35 @@
             }
         },
         "render-tag": {
-            "name": "string.quoted.liquid",
-            "match": "((?<=render)|(?<=render_relative))\\s[^{,'\"]+?\\s+"
+            "patterns": [
+                {
+                    "name": "string.quoted.liquid",
+                    "match": "((?<=render)|(?<=render_relative))\\s[^{,'\"]+?\\s+"
+                },
+                {
+                    "name": "entity.name.function.member",
+                    "match": "(?<=,)\\s\\w+"
+                },
+                {
+                    "name": "variable.parameter",
+                    "match": "(?<=:)\\s\\w+"
+                }
+            ]
+        },
+        "assign-tag": {
+            "patterns": [
+                {
+                    "name": "variable",
+                    "match": "\\b(assign)\\b"
+                },
+                {
+                    "name": "variable.name",
+                    "match": "(?<=assign)\\s[^{,'\"]+?\\s+"
+                },
+                {
+                    "include": "#keyword-operator-assignment"
+                }
+            ]
         },
         "invalid-ampersand": {
             "match": "&",
@@ -289,7 +306,6 @@
             "match": "/=",
             "name": "keyword.operator.assignment.augmented.liquid"
         },
-
         "object-properties": {
             "match": "(?<=\\w.)(?<=\\w.)\\b\\w+?\\b\\s+?",
             "name": "variable.parameter.liquid"
