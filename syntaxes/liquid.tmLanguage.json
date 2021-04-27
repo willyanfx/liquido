@@ -1,7 +1,8 @@
 {
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name": "Liquid",
-    "injectionSelector": "L:text.html -meta.embedded -comment, L:source.css -comment -string -meta.embedded, L:source.js -string.quoted.*.js -comment -string, L:source.jsx -comment -string -string.quoted.*.jsx, L:source.js.jsx -comment -string, L:source.ts -string -comment -string.quoted.*.ts, L:source.json -string.quoted.*.json, text.html.markdown -comment",
+    "injectionSelector": "L:source.js -comment -string, L:source.js -comment -string, L:source.jsx -comment -string,  L:source.js.jsx -comment -string, L:source.ts -comment -string, L:source.tsx -comment -string",
+
     "fileTypes": [
         "html",
         "liquid",
@@ -19,6 +20,9 @@
     "foldingStartMarker": "(?x){%-?\\s*(if|unless|for|paginate|capture|form|case|tablerow|raw|comment|block|paginate|schema|stylesheet|javascript)[^(%})]+-?%}",
     "foldingStopMarker": "(?x){%-?\\s*(endif|endunless|endfor|endpaginate|endcapture|endform|endcase|endtablerow|endraw|endcomment|endblock|endpaginate|endschema|endstylesheet|endjavascript)[^(%})]+-?%}",
     "patterns": [
+        {
+            "include": "text.html.basic"
+        },
         {
             "include": "#comments"
         },
@@ -129,6 +133,9 @@
                 },
                 {
                     "include": "#variable-other"
+                },
+                {
+                    "include": "#assign-tag"
                 }
             ]
         },
@@ -191,6 +198,7 @@
                 }
             ]
         },
+
         "comments": {
             "name": "comment.block.liquid",
             "begin": "{%-?\\s*comment\\s*-?%}",
@@ -237,6 +245,21 @@
                 {
                     "name": "variable.parameter",
                     "match": "(?<=:)\\s\\w+"
+                }
+            ]
+        },
+        "assign-tag": {
+            "patterns": [
+                {
+                    "name": "variable",
+                    "match": "\\b(assign)\\b"
+                },
+                {
+                    "name": "variable.name",
+                    "match": "(?<=assign)\\s[^{,'\"]+?\\s+"
+                },
+                {
+                    "include": "#keyword-operator-assignment"
                 }
             ]
         },
