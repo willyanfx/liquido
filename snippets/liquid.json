@@ -448,5 +448,10 @@
             "</a>"
         ],
         "description": "anchor link"
+    },
+    "Block Liquid": {
+        "prefix": "tag:liquid",
+        "body": ["{%- liquid", "\t$1", "-%}"],
+        "description": "Assign Image URL"
     }
 }
