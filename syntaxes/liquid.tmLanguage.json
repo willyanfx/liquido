@@ -42,7 +42,7 @@
             "include": "#tags"
         },
         {
-            "include": "#template-vars"
+            "include": "#output-duo-curly-brace"
         }
     ],
     "repository": {
@@ -139,87 +139,12 @@
                 }
             ]
         },
-        "template-vars": {
-            "name": "punctuation.output.liquid",
-            "begin": "({{)(-)?",
-            "beginCaptures": {
-                "1": {
-                    "name": "punctuation.definition.tag.begin.liquid"
-                },
-                "2": {
-                    "name": "keyword.other.whitespace.liquid"
-                }
-            },
-            "end": "(-)?(}})",
-            "endCaptures": {
-                "1": {
-                    "name": "keyword.other.whitespace.liquid"
-                },
-                "2": {
-                    "name": "punctuation.definition.tag.end.liquid"
-                }
-            },
-            "patterns": [
-                {
-                    "include": "#const-characters"
-                },
-                {
-                    "include": "#object-properties"
-                },
-                {
-                    "include": "#string-quoted-double"
-                },
-                {
-                    "include": "#string-quoted-single"
-                },
-                {
-                    "include": "#support-class"
-                },
-                {
-                    "include": "#support-function"
-                },
-                {
-                    "include": "#support-variable"
-                },
-                {
-                    "include": "#support-function-with-args"
-                },
-                {
-                    "include": "#support-function-without-args"
-                },
-                {
-                    "include": "#var-support-variable"
-                },
-                {
-                    "include": "#variable-parameter"
-                },
-                {
-                    "include": "#variable-other"
-                }
-            ]
-        },
 
-        "liquid-block": {
-            "contentName": "source.liquid",
-            "name": "meta.embedded.block.frontmatter.liquid",
-            "begin": "({%)(-)?\\s(liquid)\\s",
-            "beginCaptures": {
-                "0": {
-                    "name": "punctuation.definition.tag.begin.liquid"
-                }
-            },
-            "end": "(-)?(%})",
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.definition.tag.end.liquid"
-                }
-            },
-            "patterns": [
-                {
-                    "name": "keyword.control",
-                    "match": "\\b(if|elif|case|when|unless)\\b"
-                }
-            ]
+        "output-duo-curly-brace": {
+            "name": "punctuation.tag.liquid",
+            "begin": "\\b({{)\\b",
+            "end": "(}})",
+            "patterns": [{}]
         },
         "comments": {
             "name": "comment.block.liquid",
