@@ -40,9 +40,6 @@
         },
         {
             "include": "#tags"
-        },
-        {
-            "include": "#output-duo-curly-brace"
         }
     ],
     "repository": {
@@ -138,13 +135,6 @@
                     "include": "#assign-tag"
                 }
             ]
-        },
-
-        "output-duo-curly-brace": {
-            "name": "punctuation.tag.liquid",
-            "begin": "\\b({{)\\b",
-            "end": "(}})",
-            "patterns": [{}]
         },
         "comments": {
             "name": "comment.block.liquid",
