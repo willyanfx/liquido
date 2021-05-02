@@ -26,6 +26,7 @@
         {
             "include": "#comments"
         },
+
         {
             "include": "#schema"
         },
@@ -40,6 +41,9 @@
         },
         {
             "include": "#tags"
+        },
+        {
+            "include": "#double-curly-brace"
         }
     ],
     "repository": {
@@ -111,7 +115,7 @@
                     "include": "#string-quoted-double"
                 },
                 {
-                    "include": "#string-quoted-single"
+                    "include": "#string-quoted-double"
                 },
                 {
                     "include": "#support-class"
@@ -169,6 +173,50 @@
                     "name": "entity.name.tag.liquid"
                 }
             }
+        },
+        "double-curly-brace": {
+            "begin": "{{",
+            "beginCaptures": {
+                "0": {
+                    "name": "punctuation.definition.brace.curly.start"
+                }
+            },
+            "end": "}}",
+            "endCaptures": {
+                "0": {
+                    "name": "punctuation.definition.brace.curly.end"
+                }
+            },
+            "name": "meta.brace.curly",
+            "patterns": [
+                {
+                    "include": "#keyword-control"
+                },
+                {
+                    "include": "#keyword-operators"
+                },
+                {
+                    "include": "#keyword-operator-assignment"
+                },
+                {
+                    "include": "#support-class"
+                },
+                {
+                    "include": "#support-function"
+                },
+                {
+                    "include": "#support-variable"
+                },
+                {
+                    "include": "#support-constant"
+                },
+                {
+                    "include": "#variable-parameter"
+                },
+                {
+                    "include": "#variable-other"
+                }
+            ]
         },
         "render-tag": {
             "patterns": [
@@ -252,12 +300,22 @@
         "string-quoted-single": {
             "name": "string.quoted.single.liquid",
             "begin": "'",
-            "end": "'"
+            "end": "'",
+            "patterns": [
+                {
+                    "include": "#double-curly-brace"
+                }
+            ]
         },
         "string-quoted-double": {
             "name": "string.quoted.double.liquid",
             "begin": "\"",
-            "end": "\""
+            "end": "\"",
+            "patterns": [
+                {
+                    "include": "#double-curly-brace"
+                }
+            ]
         },
         "support-class": {
             "name": "support.class.liquid",
