@@ -43,7 +43,7 @@
             "include": "#tags"
         },
         {
-            "include": "#curly-brace"
+            "include": "#double-curly-brace"
         }
     ],
     "repository": {
@@ -174,7 +174,7 @@
                 }
             }
         },
-        "curly-brace": {
+        "double-curly-brace": {
             "begin": "{{",
             "beginCaptures": {
                 "0": {
@@ -303,7 +303,7 @@
             "end": "'",
             "patterns": [
                 {
-                    "include": "#str-interpolation"
+                    "include": "#double-curly-brace"
                 }
             ]
         },
@@ -313,7 +313,7 @@
             "end": "\"",
             "patterns": [
                 {
-                    "include": "#str-interpolation"
+                    "include": "#double-curly-brace"
                 }
             ]
         },
